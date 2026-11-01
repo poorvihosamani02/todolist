@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>toDoList — Just Do It</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <span class="logo"><span class="dot" aria-hidden="true"></span>toDoList</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1 class="hero-quote"><span class="mark">JUST DO IT</span></h1>
+
+      <form id="task-form" class="task-form" novalidate>
+        <div class="field">
+          <label for="task-desc" class="sr-only">Task description</label>
+          <input
+            type="text"
+            id="task-desc"
+            name="task-desc"
+            placeholder="What needs doing?"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="field">
+          <label for="task-date" class="sr-only">Deadline</label>
+          <input type="date" id="task-date" name="task-date" />
+        </div>
+
+        <button type="submit" class="add-btn">Add</button>
+
+        <p id="form-error" class="form-error" role="alert" aria-live="polite"></p>
+      </form>
+
+      <button
+        type="button"
+        id="toggle-list-btn"
+        class="toggle-btn"
+        aria-expanded="false"
+        aria-controls="task-section"
+      >
+        Show List
+      </button>
+    </section>
+
+    <section class="task-section" id="task-section" hidden>
+      <h2 class="section-title">Your tasks</h2>
+
+      <ul id="task-list" class="task-list"></ul>
+
+      <p id="empty-state" class="empty-state">
+        Nothing on the list yet. Add your first task above.
+      </p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

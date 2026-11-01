@@ -1,0 +1,389 @@
+/* ============================================
+   Tokens
+   ============================================ */
+:root {
+  --bg: #14161a;
+  --surface: #1c1f26;
+  --surface-raised: #23262e;
+  --border: #2c2f38;
+
+  --accent: #f4c63d;       /* hazard-yellow: action / focus */
+  --accent-ink: #14161a;   /* dark text on top of accent */
+  --urgent: #e4572e;       /* burnt orange-red: overdue */
+
+  --text: #edeef0;
+  --text-muted: #8a8f98;
+
+  --font-display: "Anton", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --radius: 10px;
+  --max-width: 640px;
+}
+
+/* ============================================
+   Reset & base
+   ============================================ */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg);
+  background-image: repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.025) 0,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 48px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 0,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 48px
+    );
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Header
+   ============================================ */
+.site-header {
+  padding: 28px 32px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+
+.logo .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 10px;
+}
+
+/* ============================================
+   Hero
+   ============================================ */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 6vh 24px 5vh;
+}
+
+.hero-quote {
+  margin: 0 0 48px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.75rem, 9vw, 6.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+}
+
+.hero-quote .mark {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.05em 0.35em 0.1em;
+  transform: rotate(-1.5deg);
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.35);
+}
+
+/* ============================================
+   Form
+   ============================================ */
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.field {
+  width: 100%;
+}
+
+input[type="text"],
+input[type="date"] {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="date"] {
+  color-scheme: dark;
+}
+
+input[type="text"]::placeholder {
+  color: var(--text-muted);
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(244, 198, 61, 0.18);
+}
+
+.add-btn {
+  padding: 14px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.15s ease;
+}
+
+.add-btn:hover {
+  background: #f7d769;
+}
+
+.add-btn:active {
+  transform: scale(0.98);
+}
+
+.toggle-btn {
+  padding: 14px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.toggle-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.form-error {
+  min-height: 1.2em;
+  margin: 2px 0 0;
+  font-size: 0.85rem;
+  color: var(--urgent);
+}
+
+/* ============================================
+   Task list
+   ============================================ */
+.task-section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 12px 24px 96px;
+}
+
+.section-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 0 0 16px;
+}
+
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+
+.task-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.task-desc {
+  overflow-wrap: anywhere;
+}
+
+.task-item.completed .task-desc {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.task-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Custom round checkbox */
+.task-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.task-checkbox:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.task-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid var(--accent-ink);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Date badge, colour-coded by urgency */
+.badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.badge--overdue {
+  color: var(--urgent);
+  border-color: var(--urgent);
+  background: rgba(228, 87, 46, 0.12);
+}
+
+.badge--soon {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(244, 198, 61, 0.12);
+}
+
+.badge--done {
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 4px;
+  transition: color 0.15s ease;
+}
+
+.delete-btn:hover {
+  color: var(--urgent);
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 32px 0;
+}
+
+.empty-state.hidden {
+  display: none;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 480px) {
+  .site-header {
+    padding: 20px;
+  }
+
+  .hero {
+    padding: 5vh 16px 4vh;
+  }
+
+  .task-section {
+    padding: 8px 16px 64px;
+  }
+
+  .task-item {
+    flex-wrap: wrap;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
